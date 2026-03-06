@@ -5,8 +5,8 @@ public static void main(String[] args) {
     int num1 = 8;
     int num2 = 6;
 
-    int total = num1 - num2;
+    int result = num1 - num2;
 
-    System.out.println("Total : " + total);
+    System.out.println("Total : " + result);
 }
 }

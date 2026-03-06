@@ -5,8 +5,8 @@ public class AdditionOfTwoNumbers {
         int num1 = 1;
         int num2 = 2;
 
-        int total = num1 + num2;
+        int result = num1 + num2;
 
-        System.out.println("Total : " + total);
+        System.out.println("Total : " + result);
     }
 }

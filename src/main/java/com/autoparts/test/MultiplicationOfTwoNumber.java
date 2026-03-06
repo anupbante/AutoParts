@@ -5,8 +5,8 @@ public static void main(String[] args) {
     int num1 = 4;
     int num2 = 5;
 
-    int total = num1 * num2;
+    int result = num1 * num2;
 
-    System.out.println("Total : " + total);
+    System.out.println("Total : " + result);
 }
 }
