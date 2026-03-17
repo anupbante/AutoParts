@@ -76,7 +76,7 @@ public class Loops {
 
   /*
 
-    1st iteration :
+    1st iteration :...
     --------------------------------------------
     index = 0;
     0 < 4; ==> true (condition true hai toh hi loop execute hoga)
