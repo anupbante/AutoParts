@@ -4,19 +4,22 @@ public class Loops {
 
 
     public static void main(String[] args) {
-        int[] inputArray = {23, 64, 2359, 63425};
-        int[] numbers = {25, 88, 55, 15};
+       /* int[] inputArray = {23, 64, 2359, 63425};
+        int[] numbers = {25, -88, 55, -15};
         String[] names = {"virat", "sachin", "dhoni"};
 
         boolean isEven = isEven(inputArray);
         System.out.println("isEven :: " + isEven);
 
-        boolean hasPositive = isPositive(numbers);
+        boolean hasPositive = isPositiveV2(numbers);
         System.out.println("Has positive number ::" + hasPositive);
 
-        boolean isPresent = false;
+        boolean isPresent = false;*/
+        String[] names = {"virat", "Sachin", "dhoni"};
+        String nameToFind = "sachin";
+        boolean namePresent = isNamePresent(names, nameToFind);
 
-
+        System.out.println("is name present: " + namePresent);
     }
 
 
@@ -47,10 +50,9 @@ public class Loops {
     public static boolean isPositive(int[] numbers) {
         int length = numbers.length;
 
-        for (int num = 0; num < length; num = num + 1) {
+        for (int index = 0; index < length; index++) {
+            int num = numbers[index];
             System.out.println("check number ::" + num);
-            int num1 = numbers[2];
-
 
             if (num > 0) {
                 System.out.println("positive number found ::" + num);
@@ -60,15 +62,33 @@ public class Loops {
         return false;
     }
 
-    public static boolean isPresent(String[] names) {
-       int length = names.length;
+    public static boolean isPositiveV2(int[] numbers) {
+        int length = numbers.length;
+        boolean isPositive = false;
+        //int[] numbers = {25, -88, 55, -15};
 
-        for (int i = 0; i < names.length; i=i+1) {
-            if (names[i]=="sachin")
+        for (int index = 0; index < length; index++) {
+            int num = numbers[index];
+            System.out.println("check number ::" + num);
 
-                System.out.println("Is Sachin present?::" + names);
+            //approach 1 :
+            /*if (num > 0) {
+                System.out.println("positive number found ::" + num);
                 return true;
-            }
+            }*/
+
+
+            // approach 2:
+            return num > 0;
+        }
+        return false;
+    }
+
+    public static boolean isNamePresent(String[] names, String nameToFind) {
+
+        for (int i = 0; i < names.length; i++) {
+            return names[i].equalsIgnoreCase(nameToFind);
+        }
         return false;
     }
 }
