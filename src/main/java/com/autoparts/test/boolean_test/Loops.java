@@ -87,7 +87,9 @@ public class Loops {
     public static boolean isNamePresent(String[] names, String nameToFind) {
 
         for (int i = 0; i < names.length; i++) {
-            return names[i].equalsIgnoreCase(nameToFind);
+            if (names[i].equalsIgnoreCase(nameToFind)){
+                return true;
+            }
         }
         return false;
     }
