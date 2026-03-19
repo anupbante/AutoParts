@@ -20,16 +20,37 @@ public class CollectionTest {
          */
 
     public static void main(String[] args) {
-       ArrayList<String> namesArrayList = new ArrayList<>();
-
-       namesArrayList.add("anup");
-       namesArrayList.add("abc");
-       namesArrayList.add("rewati");
-
-        System.out.println(namesArrayList );
 
     }
 
+
+    public static void arrayList() {
+        ArrayList<String> namesArrayList = new ArrayList<>();
+
+        namesArrayList.add("anup");
+        namesArrayList.add("abc");
+        namesArrayList.add("rewati");
+
+       for (int i = 0; i < namesArrayList.size(); i++) {
+            String name = namesArrayList.get(i);
+            System.out.println("list of names in arraylist: " + name);
+        }
+    }
+
+    /**
+     * This method checks the positive number
+     * present in the given number list.
+     */
+
+    public static void isPositive() {
+        ArrayList<Boolean> numberList = new ArrayList<>();
+    }
+
+    /* TO-DO:
+        1. isEven()
+        2. isPositive()
+        3. isNamePresent()
+    */
 
 
 }
