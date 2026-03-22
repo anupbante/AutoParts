@@ -2,7 +2,7 @@ package com.autoparts.test.collections;
 
 import java.util.ArrayList;
 
-public class CollectionTest {
+public class ArrayListTest {
 
     /*
         1. ArrayList => sequential manner me data store karta hai
@@ -20,7 +20,9 @@ public class CollectionTest {
          */
 
     public static void main(String[] args) {
-
+        isPositive();
+//        isEven();
+//        isNamePresent();
     }
 
 
@@ -46,13 +48,46 @@ public class CollectionTest {
     public static void isPositive() {
 
         ArrayList<Integer> numberList = new ArrayList<>();
-        numberList.add(11);
+
+        numberList.add(0);
         numberList.add(53);
-        numberList.add(45);
+        numberList.add(0);
+        numberList.add(10);
+
         for (int i = 0; i < numberList.size(); i++) {
             int num = numberList.get(i);
-            if (num > 0) ;
-            System.out.println("check number ::" + num);
+
+            if (num > 0) {
+                System.out.println(num + " is positive");
+            } // false
+            if (num == 0) {
+                System.out.println("Number is neutral/zero.");
+            } // true
+
+            if (num < 0) {
+                System.out.println(num + "is negative");
+            } // false
+
+            //approach 2:
+
+            if (num > 0) {
+                System.out.println(num + " is positive");
+            } else {
+                if (num == 0) {
+                    System.out.println(num + " is zero");
+                } else {
+                    System.out.println(num + " is negative");
+                }
+            }
+
+            // approach 3: if-else-if
+            if (num > 0) { // true
+                System.out.println(num + " is positive");
+            } else if (num < 0) { // false
+                System.out.println(num + " is negative");
+            } else {
+                System.out.println(num + " is zero");
+            }
         }
     }
 
@@ -61,10 +96,13 @@ public class CollectionTest {
         numbers.add(11);
         numbers.add(53);
         numbers.add(45);
+
         for (int i = 0; i < numbers.size(); i++) {
             int num1 = numbers.get(i);
-            if (num1 % 2 == 0) ;
-            System.out.println(num1 + "isEven");
+
+            if (num1 % 2 == 0) {
+                System.out.println(num1 + "is even");
+            }
 
         }
     }
@@ -78,6 +116,7 @@ public class CollectionTest {
 
         for (int i = 0; i < names.size(); i++) {
             String name = names.get(i);
+
             if (name.equalsIgnoreCase("abc")) {
                 System.out.println(name + "is present");
             }
@@ -85,18 +124,3 @@ public class CollectionTest {
     }
 
 }
-
-
-
-
-
-    /* TO-DO:
-        1. isEven()
-        2. isPositive()
-        3. isNamePresent()
-    */
-
-/*
-*This method checks the even number
-     * present in the given number list.
- */
