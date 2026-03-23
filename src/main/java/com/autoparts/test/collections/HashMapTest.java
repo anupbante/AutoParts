@@ -1,6 +1,8 @@
 package com.autoparts.test.collections;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /*
        1. ArrayList => sequential manner me data store karta hai
@@ -26,6 +28,17 @@ public class HashMapTest {
         nameAge.put("anup", 30);
         nameAge.put("abc", 60);
         nameAge.put("xyz", 10);
+
+        isAdultChildOrElder(nameAge);
+
+    }
+
+    // TO-DO:
+    // 1. isAdultChildOrElder()
+    // 2. isMaleFemaleOrOther()
+    // 3. isValidVoter()
+
+    public static void isAdultChildOrElder(HashMap<String, Integer> nameAge) {
         /*
         1)humne joo phele for (int i = 0; i < nameAge.size(); i++) use kiya tha wo index-based loop hai.
         Lekin HashMap index-based nahi hota.
@@ -38,7 +51,10 @@ public class HashMapTest {
         example:(int i = 0; i < nameAge.size(); i++)
         */
 
-        for (HashMap.Entry<String, Integer> entry : nameAge.entrySet()) {
+        Set<Map.Entry<String, Integer>> entries = nameAge.entrySet();
+
+
+        for (HashMap.Entry<String, Integer> entry : entries) {
             String name = entry.getKey();
             int age = entry.getValue();
 
@@ -51,15 +67,5 @@ public class HashMapTest {
             }
 
         }
-
-    }
-
-    // TO-DO:
-    // 1. isAdultChildOrElder()
-    // 2. isMaleFemaleOrOther()
-    // 3. isValidVoter()
-
-    public static void isAdultChildOrElder() {
-
     }
 }
