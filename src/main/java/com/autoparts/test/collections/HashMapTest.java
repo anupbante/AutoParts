@@ -22,21 +22,32 @@ import java.util.Set;
 public class HashMapTest {
 
     public static void main(String[] args) {
+
+        HashMap<String, String> people = new HashMap<>();
+
+        people.put("Rahul", "Male");
+        people.put("abc", "Female");
+        people.put("xyz", "Other");
+        // isMaleFemaleOrOther(people);
+
         HashMap<String, Integer> nameAge = new HashMap<>();
 
         nameAge.put("rewati", 31);
         nameAge.put("anup", 30);
         nameAge.put("abc", 60);
         nameAge.put("xyz", 10);
+        // isAdultChildOrElder(nameAge);
 
-        isAdultChildOrElder(nameAge);
+        HashMap<String, Integer> voterValidation = new HashMap<>();
+
+        voterValidation.put("Rewati", 31);
+        voterValidation.put("Anup", 10);
+        isValidVoter(voterValidation);
+
 
     }
 
-    // TO-DO:
-    // 1. isAdultChildOrElder()
-    // 2. isMaleFemaleOrOther()
-    // 3. isValidVoter()
+
 
     public static void isAdultChildOrElder(HashMap<String, Integer> nameAge) {
         /*
@@ -59,13 +70,51 @@ public class HashMapTest {
             int age = entry.getValue();
 
             if (age < 18) {
-                System.out.println(name +  "is a child");
-            } else if (age > 18 && age < 50 ) {
-                System.out.println(name +  "is a adult");
-            } else  {
-                System.out.println(name +  "is a elder");
+                System.out.println(name + "is a child");
+            } else if (age > 18 && age < 50) {
+                System.out.println(name + "is a adult");
+            } else {
+                System.out.println(name + "is a elder");
             }
 
         }
     }
+
+    public static void isMaleFemaleOrOther(HashMap<String, String> gender) {
+
+        Set<HashMap.Entry<String, String>> entries = gender.entrySet();
+
+        for (HashMap.Entry<String, String> entry : gender.entrySet()) {
+            String person = entry.getKey();
+            String Gender = entry.getValue();
+            if (Gender.equalsIgnoreCase("Male")) {
+                System.out.println(person + " is a Male");
+            } else if (Gender.equalsIgnoreCase("Female")) {
+                System.out.println(person + " is a Female");
+            } else {
+                System.out.println(person + " is Other");
+            }
+        }
+    }
+
+
+    public static void isValidVoter(HashMap<String, Integer> voterValidation) {
+        Set<Map.Entry<String, Integer>> entries = voterValidation.entrySet();
+        for (HashMap.Entry<String, Integer> entry : voterValidation.entrySet()) {
+            String voter = entry.getKey();
+            int age = entry.getValue();
+
+            if (age >= 18) {
+                System.out.println(voter + " is a valid voter" + age);
+            } else {
+                System.out.println(voter + " is NOT a valid voter" + age);
+            }
+        }
+    }
 }
+
+
+// TO-DO:
+// 1. isAdultChildOrElder()
+// 2. isMaleFemaleOrOther()
+// 3. isValidVoter()
