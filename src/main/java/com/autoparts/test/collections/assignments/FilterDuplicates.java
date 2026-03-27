@@ -1,6 +1,10 @@
 package com.autoparts.test.collections.assignments;
 
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 /*
 This class finds the duplicate numbers in a given numbers list, stores them separately
 and returns back to the caller.
@@ -13,4 +17,19 @@ print them.
  */
 public class FilterDuplicates {
 
+    public ArrayList<Integer> filterDuplicates(List<Integer> numberList) {
+        ArrayList<Integer> duplicates = new ArrayList<>();
+        HashSet<Integer> seen = new HashSet<>();
+        for (int number : numberList) {
+            if (seen.contains(number)) {
+                if (!duplicates.contains(number)) {
+                    duplicates.add(number);
+                }
+            }
+            else{
+                seen.add(number);
+            }
+        }
+        return duplicates;
+    }
 }
