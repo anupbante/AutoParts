@@ -4,17 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("parts/v1")
-@Deprecated
-public class PartsController {
+@RequestMapping("parts/v2")
+public class PartsController2 {
 
 	private static final List<String> ALL_PARTS_LIST = new ArrayList<>();
 
@@ -24,7 +25,7 @@ public class PartsController {
 		ALL_PARTS_LIST.add("1c-8989");
 	}
 	
-    @GetMapping("all")
+    @GetMapping
     private List<String> getAllParts() {
         return ALL_PARTS_LIST;
     }
@@ -35,8 +36,8 @@ public class PartsController {
      * @param partNumberString
      * @return 
      */
-    @GetMapping("getPart")
-    private String getPart(@RequestParam(name = "partNumber") String partNumberString) {
+    @GetMapping("{partNumber}")
+    private String getPart(@PathVariable("partNumber") String partNumberString) {
     	if(ALL_PARTS_LIST.contains(partNumberString)) {
     		return ALL_PARTS_LIST.get(ALL_PARTS_LIST.indexOf(partNumberString));
     	} else {
@@ -44,27 +45,29 @@ public class PartsController {
     	}
     }
     
-    @GetMapping("searchPart")
-    private List<String> searchPart(@RequestParam(name = "searchPartNumber") String searchPart) {
-    	List<String> filteredPartList = new ArrayList<>();
-    	
-    	for (String part : ALL_PARTS_LIST) {
-			if(part.contains(searchPart)) {
-				filteredPartList.add(part);
-			}
-		}
-    	return filteredPartList;
-    }
-    
-    @PostMapping("savePart")
-    private ResponseEntity savePart(@RequestBody List<Map<String, String>> requestBodyList) throws Exception {
+    @PostMapping
+    private ResponseEntity<?> savePart(@RequestBody List<Map<String, String>> requestBodyList) throws Exception {
     
     	for (Map<String,String> partMap : requestBodyList) {
     		ALL_PARTS_LIST.add(partMap.get("partNumber"));
 		}
     	
     	return ResponseEntity.ok(ALL_PARTS_LIST);
+    }
+    
+    @PutMapping
+    private ResponseEntity<?> updatePart(@RequestBody List<Map<String, String>> requestBodyList) throws Exception {
+    
+    	// update logic 
+    	return ResponseEntity.ok("records updated !" );
+    }
+    
+    @DeleteMapping
+    private ResponseEntity<?> deletePart(@RequestBody List<String> partsToBeDeletedList) throws Exception {
+        
+    	ALL_PARTS_LIST.removeAll(partsToBeDeletedList);
     	
+    	return ResponseEntity.ok(ALL_PARTS_LIST);
     }
     
     
