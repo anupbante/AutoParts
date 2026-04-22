@@ -13,20 +13,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.autoparts.model.Part;
+
 @RestController
 @RequestMapping("parts/v2")
 public class PartsController2 {
 
-	private static final List<String> ALL_PARTS_LIST = new ArrayList<>();
+	private static final List<Part> ALL_PARTS_LIST = new ArrayList<>();
 
 	static {
-		ALL_PARTS_LIST.add("1a-234");
-		ALL_PARTS_LIST.add("2b-2343");
-		ALL_PARTS_LIST.add("1c-8989");
+//		ALL_PARTS_LIST.add("1a-234");
+//		ALL_PARTS_LIST.add("2b-2343");
+//		ALL_PARTS_LIST.add("1c-8989");
+		
+		Part part1 = new Part();
+		
+		part1.setPartNumber("1a-234");
+		part1.setName("1a-234: Oil separator");
+		part1.setDescription("This is for excavators");
+		part1.setInStock(true);
+		
+		ALL_PARTS_LIST.add(part1);
 	}
 	
     @GetMapping
-    private List<String> getAllParts() {
+    private List<Part> getAllParts() {
         return ALL_PARTS_LIST;
     }
     
@@ -39,18 +50,30 @@ public class PartsController2 {
     @GetMapping("{partNumber}")
     private String getPart(@PathVariable("partNumber") String partNumberString) {
     	if(ALL_PARTS_LIST.contains(partNumberString)) {
-    		return ALL_PARTS_LIST.get(ALL_PARTS_LIST.indexOf(partNumberString));
+    		//return ALL_PARTS_LIST.get(ALL_PARTS_LIST.indexOf(partNumberString));
+    		return null;
     	} else {
     		return "Part not found!";
     	}
     }
     
-    @PostMapping
+   /* @PostMapping
     private ResponseEntity<?> savePart(@RequestBody List<Map<String, String>> requestBodyList) throws Exception {
     
     	for (Map<String,String> partMap : requestBodyList) {
     		ALL_PARTS_LIST.add(partMap.get("partNumber"));
 		}
+    	
+    	return ResponseEntity.ok(ALL_PARTS_LIST);
+    }
+    */
+    
+    @PostMapping
+    private ResponseEntity<?> savePart(@RequestBody List<Part> requestBodyList) throws Exception {
+    	
+    	for (Part part : requestBodyList) {
+    		ALL_PARTS_LIST.add(part);
+    	}
     	
     	return ResponseEntity.ok(ALL_PARTS_LIST);
     }
