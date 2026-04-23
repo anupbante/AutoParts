@@ -1,10 +1,6 @@
 package com.autoparts.model;
 
 public class Medicine {
-    //   "partNumber": "7a-234",
-//		  "name": "7a-234: Clutch plate",
-//		  "description": "Four wheeler clutch plate for 1.0 litre engine",
-//		  "inStock": true
 
     private String medicineNumber;
     private String name;
