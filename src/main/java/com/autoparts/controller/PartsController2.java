@@ -43,7 +43,7 @@ public class PartsController2 {
 	
     @GetMapping
     private List<Part> getAllParts() {
-        return ALL_PARTS_LIST;
+        return partService.getALLparts();
     }
     
     /**
@@ -82,16 +82,17 @@ public class PartsController2 {
     }
     
     @PutMapping
-    private ResponseEntity<?> updatePart(@RequestBody List<Map<String, String>> requestBodyList) throws Exception {
-    
-    	// update logic 
-    	return ResponseEntity.ok("records updated !" );
+    private ResponseEntity<?> updatePart(@RequestBody List<Part> requestBodyList) throws Exception {
+
+		List<Part> updatedPartList = partService.updatePart(requestBodyList);
+    	return ResponseEntity.ok(updatedPartList );
     }
-    
+
     @DeleteMapping
-    private ResponseEntity<?> deletePart(@RequestBody List<String> partsToBeDeletedList) throws Exception {
-        
-    	ALL_PARTS_LIST.removeAll(partsToBeDeletedList);
+    private ResponseEntity<?> deletePart(@RequestBody List<Part> partsToBeDeletedList) throws Exception {
+
+
+    	partService.deletePart(partsToBeDeletedList);
     	
     	return ResponseEntity.ok(ALL_PARTS_LIST);
     }
