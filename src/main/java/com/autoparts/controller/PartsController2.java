@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autoparts.model.Part;
+import com.autoparts.service.PartService;
 
 @RestController
 @RequestMapping("parts/v2")
 public class PartsController2 {
 
 	private static final List<Part> ALL_PARTS_LIST = new ArrayList<>();
+	
+	@Autowired
+	private PartService partService;
 
 	static {
 //		ALL_PARTS_LIST.add("1a-234");
@@ -71,11 +76,9 @@ public class PartsController2 {
     @PostMapping
     private ResponseEntity<?> savePart(@RequestBody List<Part> requestBodyList) throws Exception {
     	
-    	for (Part part : requestBodyList) {
-    		ALL_PARTS_LIST.add(part);
-    	}
+    	List<Part> savedPartList = partService.savePart(requestBodyList);
     	
-    	return ResponseEntity.ok(ALL_PARTS_LIST);
+    	return ResponseEntity.ok(savedPartList);
     }
     
     @PutMapping
