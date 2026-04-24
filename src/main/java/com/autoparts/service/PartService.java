@@ -45,8 +45,21 @@ public class PartService {
 	}
 
 	public List<Part> deletePart(List<Part> requestBodyList) {
-		ALL_PARTS_LIST.removeAll(requestBodyList); {
-			return ALL_PARTS_LIST;
+		List<Part> deletedParts = new ArrayList<>();
+
+		for (Part partToBeDeleted : requestBodyList) {
+			for (Part existingPart : ALL_PARTS_LIST) {
+				if (existingPart.getPartNumber().equalsIgnoreCase(partToBeDeleted.getPartNumber())) {
+					/*
+					 * this part is being added for deletion, or if we tried to remove the part
+					 * directly from ALL_PARTS_LIST then we will get
+					 * ConcurrentModificationException.
+					 */
+					deletedParts.add(existingPart);
+				}
+			}
 		}
+		ALL_PARTS_LIST.removeAll(deletedParts);
+		return ALL_PARTS_LIST;
 	}
 }
