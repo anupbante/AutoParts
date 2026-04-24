@@ -92,9 +92,9 @@ public class PartsController2 {
     private ResponseEntity<?> deletePart(@RequestBody List<Part> partsToBeDeletedList) throws Exception {
 
 
-    	partService.deletePart(partsToBeDeletedList);
+    	List<Part> deletedParts = partService.deletePart(partsToBeDeletedList);
     	
-    	return ResponseEntity.ok(ALL_PARTS_LIST);
+    	return ResponseEntity.ok(deletedParts);
     }
     
     
